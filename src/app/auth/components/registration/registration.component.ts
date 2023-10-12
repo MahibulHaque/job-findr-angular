@@ -17,6 +17,7 @@ import { MatDatepicker } from '@angular/material/datepicker';
 export class RegistrationComponent {
   constructor() {}
   @ViewChild(MatDatepicker) picker!: MatDatepicker<Date>;
+  formSubmittingLoader: boolean = false;
 
   dobValidator = (control: AbstractControl): ValidationErrors => {
     if (control.value) {
@@ -41,7 +42,6 @@ export class RegistrationComponent {
     if (control) {
       const password = this.signUpForm?.get('password')?.value;
       const repassword = control.value;
-      console.log(password, repassword);
       if (!password || !repassword || password !== repassword) {
         return {
           passwordMismatch: true,
@@ -67,10 +67,12 @@ export class RegistrationComponent {
       this.confirmPasswordValidator,
     ]),
     dob: new FormControl('', [Validators.required, this.dobValidator]),
+    country: new FormControl('', Validators.required),
   });
   onSubmit() {
     this.signUpForm.markAllAsTouched();
     if (this.signUpForm.valid) {
+      this.formSubmittingLoader = true;
       this.signUpForm.reset();
     } else {
       console.error('Form is not valid. Please fix the errors.');

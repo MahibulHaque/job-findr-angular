@@ -1,76 +1,69 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "username": "duncan",
-        "country": "australia",
-        "password": "123"
-      },
-      {
-        "id": 2,
-        "username": "sarah",
-        "country": "england",
-        "password": "123"
-      },
-      {
-        "id": 3,
-        "username": "admin",
-        "country": "usa",
-        "password": "123"
-      },
-      {
-        "username": "test2",
-        "password": "123",
-        "id": 4
-      }
-    ],
-    "profiles": [
-      {
-        "id": 1,
-        "userId": 1,
-        "job": "Plumber"
-      },
-      {
-        "id": 2,
-        "userId": 2,
-        "job": "developer"
-      },
-      {
-        "id": 3,
-        "userId": 3,
-        "job": "Manager"
-      }
-    ],
-    "products": [
-      {
-        "id": 1,
-        "name": "Spanner",
-        "category": "tools"
-      },
-      {
-        "id": 2,
-        "name": "Hammer",
-        "category": "tools"
-      },
-      {
-        "id": 3,
-        "name": "Screw driver",
-        "category": "tools"
-      },
-      {
-        "id": 4,
-        "name": "Paint brush",
-        "category": "paint"
-      },
-      {
-        "id": 5,
-        "name": "Paint roller",
-        "category": "paint"
-      },
-      {
-        "id": 6,
-        "name": "Paint",
-        "category": "paint"
-      }
-    ]
-  }
+  "users": [
+    {
+      "id": 1,
+      "email": "fro@gmail.com",
+      "password": "sdasdsa",
+      "username": "Frosty",
+      "dob": "23/02/2021",
+      "country": "us"
+    },
+    {
+      "username": "himel",
+      "password": "$2b$10$Zt4N3/J30G.gBNe4ExAPbO4dujOinC2JcZ7Pspp5MC9oRKifw9iYK",
+      "email": "himel@gmail.com",
+      "dob": "2023-10-11",
+      "country": "us",
+      "id": "c76ed68e-804e-4aed-af88-41c3b312907a"
+    }
+  ],
+  "profiles": [
+    {
+      "id": 1,
+      "userId": 1,
+      "job": "Plumber"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "job": "developer"
+    },
+    {
+      "id": 3,
+      "userId": 3,
+      "job": "Manager"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Spanner",
+      "category": "tools"
+    },
+    {
+      "id": 2,
+      "name": "Hammer",
+      "category": "tools"
+    },
+    {
+      "id": 3,
+      "name": "Screw driver",
+      "category": "tools"
+    },
+    {
+      "id": 4,
+      "name": "Paint brush",
+      "category": "paint"
+    },
+    {
+      "id": 5,
+      "name": "Paint roller",
+      "category": "paint"
+    },
+    {
+      "id": 6,
+      "name": "Paint",
+      "category": "paint"
+    }
+  ]
+}

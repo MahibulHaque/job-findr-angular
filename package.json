@@ -21,9 +21,18 @@
     "@angular/platform-browser": "~13.0.0-next.0",
     "@angular/platform-browser-dynamic": "~13.0.0-next.0",
     "@angular/router": "~13.0.0-next.0",
+    "@auth0/angular-jwt": "^5.1.2",
+    "@ng-icons/core": "^25.4.0",
+    "@ng-icons/feather-icons": "^25.4.0",
+    "@ng-icons/heroicons": "^25.4.0",
+    "@ng-icons/lucide": "^25.4.0",
     "@ngrx/store": "^13.2.0",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "lucide-angular": "^0.286.0",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
+    "uuid": "^9.0.1",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
