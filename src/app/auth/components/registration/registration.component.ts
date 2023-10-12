@@ -8,17 +8,32 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { UserPersistanceService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css'],
 })
-export class RegistrationComponent {
-  constructor() {}
+export class RegistrationComponent implements OnInit {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private userPersistance: UserPersistanceService
+  ) {}
+
+  ngOnInit(): void {
+    if (this.userPersistance.isLoggedIn()) {
+      this.router.navigate(['dashboard']);
+    }
+  }
+
   @ViewChild(MatDatepicker) picker!: MatDatepicker<Date>;
   formSubmittingLoader: boolean = false;
-
+  signUpError = false;
+  errorMessage = '';
   dobValidator = (control: AbstractControl): ValidationErrors => {
     if (control.value) {
       const dob = new Date(control.value);
@@ -72,8 +87,28 @@ export class RegistrationComponent {
   onSubmit() {
     this.signUpForm.markAllAsTouched();
     if (this.signUpForm.valid) {
-      this.formSubmittingLoader = true;
-      this.signUpForm.reset();
+      const { username, email, password, dob, country } = this.signUpForm.value;
+
+      if (username && email && password && dob && country) {
+        this.authService
+          .signUpUser({
+            username: username,
+            email: email,
+            dob: dob,
+            country: country,
+            password: password,
+          })
+          .subscribe({
+            next: (res) => {
+              localStorage.setItem('accessToken', res.accessToken);
+              this.router.navigate(['dashboard']);
+            },
+            error: (err) => {
+              this.errorMessage = err.error.message;
+              this.signUpError = true;
+            },
+          });
+      }
     } else {
       console.error('Form is not valid. Please fix the errors.');
     }

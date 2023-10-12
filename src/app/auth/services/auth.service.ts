@@ -10,7 +10,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthService {
   baseUrl = 'http://localhost:3000';
 
-  constructor(private http: HttpClient, private jwthelper: JwtHelperService,) {}
+  constructor(private http: HttpClient, private jwthelper: JwtHelperService) {}
 
   signUpUser(user: SignUpUserInterface): Observable<{ accessToken: string }> {
     return this.http.post<{ accessToken: string }>(

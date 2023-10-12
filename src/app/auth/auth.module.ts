@@ -8,9 +8,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SharedModule } from '../shared/shared.module';
 import { LucideAngularModule, Loader2 } from 'lucide-angular';
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 @NgModule({
   declarations: [RegistrationComponent, LoginComponent],
   imports: [
@@ -22,7 +23,7 @@ import { LucideAngularModule, Loader2 } from 'lucide-angular';
     MatDatepickerModule,
     MatNativeDateModule,
     SharedModule,
-    LucideAngularModule.pick({ Loader2 })
+    LucideAngularModule.pick({ Loader2 }),
   ],
 })
 export class AuthModule {}

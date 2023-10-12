@@ -8,6 +8,11 @@ interface SignUpUserInterface {
   password: string;
 }
 
+interface SignInUserInterface {
+  email: string;
+  password: string;
+}
+
 const jsonServer = require('json-server');
 const server = jsonServer.create();
 const router = jsonServer.router('server/db.json');
@@ -21,28 +26,41 @@ const { JWT_SECRET } = require('./config.js');
 server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
-server.post('/login', (req, res) => {
-  const users = readUsers();
+server.post('/login', async (req, res, next) => {
+  try {
+    const user: SignInUserInterface = req.body;
 
-  const user = users.filter(
-    (u) => u.username === req.body.username && u.password === req.body.password
-  )[0];
-
-  if (user) {
-    res.send({ ...formatUser(user), token: checkIfAdmin(user) });
-  } else {
-    res.status(401).send('Incorrect username or password');
+    const findUser = db.users.filter((u) => u.email === user.email)[0];
+    if (!findUser) {
+      return res.status(400).send({ error: '404', message: 'User not found' });
+    } else {
+      const passwordMatch = await bcrypt.compare(
+        user.password,
+        findUser.password
+      );
+      if (passwordMatch) {
+        const accessToken = jwt.sign({ id: findUser.id }, JWT_SECRET, {
+          expiresIn: '2 days',
+        });
+        return res.status(200).send({ accessToken });
+      } else {
+        return res.status(403).send({ error: '403', message: 'Wrong Password' });
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ error, message: 'Something went wrong' });
+    next();
   }
 });
 
-server.post('/register', async (req, res) => {
+server.post('/register', async (req, res, next) => {
   const user: SignUpUserInterface = req.body;
 
   try {
     if (!user) {
       throw new Error('No user data provided');
     }
-    const users = readUsers();
     const findUser = db.users.filter((u) => u.email === user.email);
     console.log(findUser);
     if (findUser.length > 0) {
@@ -58,7 +76,7 @@ server.post('/register', async (req, res) => {
       db.users.push(newUser);
       fs.writeFileSync('./server/db.json', JSON.stringify(db, null, 2));
 
-      const accessToken = jwt.sign({ newUserId }, JWT_SECRET, {
+      const accessToken = jwt.sign({ id: newUserId }, JWT_SECRET, {
         expiresIn: '2 days',
       });
       res.status(201).send({ accessToken });
@@ -66,6 +84,7 @@ server.post('/register', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(400).send({ error, message: 'Could not create user' });
+    next();
   }
 });
 

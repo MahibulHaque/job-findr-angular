@@ -1,20 +1,28 @@
 {
   "users": [
     {
-      "id": 1,
-      "email": "fro@gmail.com",
-      "password": "sdasdsa",
-      "username": "Frosty",
-      "dob": "23/02/2021",
-      "country": "us"
-    },
-    {
       "username": "himel",
-      "password": "$2b$10$Zt4N3/J30G.gBNe4ExAPbO4dujOinC2JcZ7Pspp5MC9oRKifw9iYK",
+      "password": "$2b$10$nZ8gDx27N9IvAjGcaJmwDeTUb3mjlu4/SF0Z9z5GfSVd.LHYL9E4K",
       "email": "himel@gmail.com",
       "dob": "2023-10-11",
       "country": "us",
-      "id": "c76ed68e-804e-4aed-af88-41c3b312907a"
+      "id": "eb3625a8-8b53-4f9a-bf69-48fd5c824ab0"
+    },
+    {
+      "username": "Frosty",
+      "email": "frosty123@gmail.com",
+      "dob": "1993-02-02T08:00:00.000Z",
+      "country": "us",
+      "password": "$2b$10$j9TmMyu4v.L0a5tgLB2ouu00sSlfo2fM6/s4iRGThe8oKLqMccShy",
+      "id": "f1d1489a-28f4-4f5d-ab92-ab154bce1f74"
+    },
+    {
+      "username": "Frosty",
+      "email": "frosty12@gmail.com",
+      "dob": "1992-06-02T07:00:00.000Z",
+      "country": "uk",
+      "password": "$2b$10$43eZdsUBFx5ihRCt/ZFlIOqQyuNJJoHt8l2iRKewrK91fcu0vL4KO",
+      "id": "d6057ac5-de0c-4caa-9f76-5d39d53b17fa"
     }
   ],
   "profiles": [
