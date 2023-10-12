@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+<<<<<<< HEAD
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
@@ -14,6 +15,24 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '',
+=======
+import { Routes, RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
+
+const routes: Routes = [
+  {
+    path: 'home',
+    component:AppComponent
+  },
+  {
+    path: 'search',
+    loadChildren: () =>
+      import('./search/search.module').then((m) => m.SearchModule),
+  },
+  {
+    path: '',
+    redirectTo: '/home',
+>>>>>>> feat-search
     pathMatch: 'full',
   },
 ];
