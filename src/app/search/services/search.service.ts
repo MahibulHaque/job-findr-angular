@@ -15,7 +15,7 @@ export class SearchService {
     const endpoint = this.apiUrl + `?query=${query}`;
     return this.httpClient.get<JobSearchResponse>(endpoint, {
       headers: {
-        'X-RapidAPI-Key': '124f20a58fmsh39f16fc6b0a6b01p1ef20ajsnc2cd4710ce38',
+        'X-RapidAPI-Key': environment.rapidApiKey,
         'X-RapidAPI-Host': 'jsearch.p.rapidapi.com',
       },
     });

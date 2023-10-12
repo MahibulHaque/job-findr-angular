@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeroSectionComponent } from './hero-section.component';
+import { PopularJobsCardComponent } from './popular-jobs-card.component';
 
-describe('HeroSectionComponent', () => {
-  let component: HeroSectionComponent;
-  let fixture: ComponentFixture<HeroSectionComponent>;
+describe('PopularJobsCardComponent', () => {
+  let component: PopularJobsCardComponent;
+  let fixture: ComponentFixture<PopularJobsCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeroSectionComponent ]
+      declarations: [ PopularJobsCardComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeroSectionComponent);
+    fixture = TestBed.createComponent(PopularJobsCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
