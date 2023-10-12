@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'https://jsearch.p.rapidapi.com/search',
-  rapidApiKey:'124f20a58fmsh39f16fc6b0a6b01p1ef20ajsnc2cd4710ce38'
+  rapidApiKey:'e6e1763a2fmsheed1cb836116991p1d31d8jsn2fe112926e86'
 };
 
 /*

@@ -5,10 +5,10 @@ import { SearchRoutingModule } from './search-routing.module';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SearchComponent } from './search.component';
 import { FormsModule } from '@angular/forms';
-import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { PopularJobsCardComponent } from './components/popular-jobs-card/popular-jobs-card.component';
-import { LucideAngularModule, PenTool, Monitor, Database } from 'lucide-angular';
+import { LucideAngularModule, PenTool, Monitor, Database, MapPin } from 'lucide-angular';
+import { JobCardComponent } from './components/job-card/job-card.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +16,13 @@ import { LucideAngularModule, PenTool, Monitor, Database } from 'lucide-angular'
     SearchComponent,
     SearchResultsComponent,
     PopularJobsCardComponent,
+    JobCardComponent,
   ],
   imports: [
     CommonModule,
     SearchRoutingModule,
     FormsModule,
-    LoadingBarModule,
-    LucideAngularModule.pick({PenTool, Monitor, Database}),
+    LucideAngularModule.pick({PenTool, Monitor, Database, MapPin}),
   ],
 })
 export class SearchModule {}

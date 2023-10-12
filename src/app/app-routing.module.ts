@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-<<<<<<< HEAD
 import { RouterModule, Routes } from '@angular/router';
+import { HomePageComponent } from './home-page/components/home-page/home-page.component';
 
 const routes: Routes = [
   {
@@ -13,16 +13,9 @@ const routes: Routes = [
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
   {
-    path: '',
-    redirectTo: '',
-=======
-import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
-
-const routes: Routes = [
-  {
     path: 'home',
-    component:AppComponent
+    loadChildren: () =>
+      import('./home-page/home-page.module').then((m) => m.HomePageModule),
   },
   {
     path: 'search',
@@ -32,9 +25,12 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '/home',
->>>>>>> feat-search
     pathMatch: 'full',
   },
+  {
+    path:'**',
+    redirectTo:"/home"
+  }
 ];
 
 @NgModule({
