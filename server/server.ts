@@ -1,5 +1,3 @@
-import { User } from "./types";
-
 const jsonServer = require('json-server');
 const server = jsonServer.create();
 const router = jsonServer.router('server/db.json');
@@ -11,35 +9,36 @@ server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
 server.post('/login', (req, res, next) => { 
-  const users:User[] = readUsers();
+  const users = readUsers();
 
   const user = users.filter(
     u => u.username === req.body.username && u.password === req.body.password
   )[0];
 
   if (user) {
-    res.send({ ...formatUser(user)});
+    res.send({ ...formatUser(user), token: checkIfAdmin(user) });
   } else {
     res.status(401).send('Incorrect username or password');
   }
 });
 
 server.post('/register', (req, res) => {
-  const users:User[] = readUsers();
-  const user = users.filter(u => u.email === req.body.email)[0];
+  const users = readUsers();
+  const user = users.filter(u => u.username === req.body.username)[0];
 
   if (user === undefined || user === null) {
     res.send({
       ...formatUser(req.body),
+      token: checkIfAdmin(req.body)
     });
     db.users.push(req.body);
   } else {
-    res.status(400).send('User already exists');
+    res.status(500).send('User already exists');
   }
 });
 
 server.use('/users', (req, res, next) => {
-  if ( req.query.bypassAuth === 'true') {
+  if (isAuthorized(req) || req.query.bypassAuth === 'true') {
     next();
   } else {
     res.sendStatus(401);
@@ -51,10 +50,23 @@ server.listen(3000, () => {
   console.log('JSON Server is running');
 });
 
-function formatUser(user:User) {
+function formatUser(user) {
+  delete user.password;
+  user.role = user.username === 'admin'
+    ? 'admin'
+    : 'user';
   return user;
 }
 
+function checkIfAdmin(user, bypassToken = false) {
+  return user.username === 'admin' || bypassToken === true
+    ? 'admin-token'
+    : 'user-token';
+}
+
+function isAuthorized(req) {
+  return req.headers.authorization === 'admin-token' ? true : false;
+}
 
 function readUsers() {
   const dbRaw = fs.readFileSync('./server/db.json');  

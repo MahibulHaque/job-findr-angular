@@ -30,15 +30,21 @@
               placeholder="John doe"
               formControlName="username"
             />
-            <p
+            <div
               class="error-message"
               *ngIf="
-                signUpForm.get('username')?.hasError('required') &&
-                signUpForm.get('username')?.touched
+                signUpForm.get('username')?.invalid &&
+                (signUpForm.get('username')?.dirty ||
+                  signUpForm.get('username')?.touched)
               "
             >
-              Username is required.
-            </p>
+              <p *ngIf="signUpForm.get('username')?.errors?.['minlength']">
+                Username must be at least 3 characters long
+              </p>
+              <p *ngIf="signUpForm.get('username')?.errors?.['maxlength']">
+                Username can be maximum of 100 characters long
+              </p>
+            </div>
           </div>
           <div>
             <label
@@ -54,24 +60,21 @@
               placeholder="name@company.com"
               formControlName="email"
             />
-            <p
+            <div
               class="error-message"
               *ngIf="
-                signUpForm.get('email')?.hasError('required') &&
-                signUpForm.get('email')?.touched
+                signUpForm.get('email')?.invalid &&
+                (signUpForm.get('email')?.dirty ||
+                  signUpForm.get('email')?.touched)
               "
             >
-              Email is required.
-            </p>
-            <p
-              class="error-message"
-              *ngIf="
-                signUpForm.get('email')?.hasError('email') &&
-                signUpForm.get('email')?.touched
-              "
-            >
-              Invalid email format.
-            </p>
+              <p *ngIf="signUpForm.get('email')?.errors?.['required']">
+                Email is required
+              </p>
+              <p *ngIf="signUpForm.get('email')?.errors?.['email']">
+                Invalid Email
+              </p>
+            </div>
           </div>
           <div>
             <label
@@ -87,15 +90,21 @@
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               formControlName="password"
             />
-            <p
+            <div
               class="error-message"
               *ngIf="
-                signUpForm.get('password')?.hasError('required') &&
-                signUpForm.get('password')?.touched
+                signUpForm.get('password')?.invalid &&
+                (signUpForm.get('password')?.dirty ||
+                  signUpForm.get('password')?.touched)
               "
             >
-              Password is required.
-            </p>
+              <p *ngIf="signUpForm.get('password')?.errors?.['required']">
+                Password is required
+              </p>
+              <p *ngIf="signUpForm.get('password')?.errors?.['minlength']">
+                Password must contain 8 characters
+              </p>
+            </div>
           </div>
           <div>
             <label
@@ -111,18 +120,23 @@
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               formControlName="repassword"
             />
-            <p
+            <div
               class="error-message"
               *ngIf="
-                signUpForm.get('repassword')?.hasError('required') &&
-                signUpForm.get('repassword')?.touched
+                signUpForm.get('repassword')?.invalid &&
+                (signUpForm.get('repassword')?.dirty ||
+                  signUpForm.get('repassword')?.touched)
               "
             >
-              Retype your password
-            </p>
-            <p class="error-message" *ngIf="signUpForm.get('repassword')?.hasError('passwordMismatch') && signUpForm.get('repassword')?.touched">
-              Password doesn't match
-            </p>
+              <p *ngIf="signUpForm.get('repassword')?.errors['required']">
+                Re-Type Password is required
+              </p>
+              <p
+                *ngIf="signUpForm.get('repassword')?.errors['passwordMismatch']"
+              >
+                Password doesn't match
+              </p>
+            </div>
           </div>
           <div>
             <label
@@ -133,7 +147,6 @@
             <select
               id="countries"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              formControlName="country"
             >
               <option selected>Choose a country</option>
               <option value="us">United States</option>
@@ -145,34 +158,33 @@
 
           <div class="flex flex-col gap-2">
             <label for="dob">Date of Birth</label>
-            <!-- <mat-form-field>
+            <mat-form-field>
               <mat-label>Choose a date</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="dob" />
               <mat-hint>MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field> -->
-            <p class="error-message" *ngIf="signUpForm.get('dob')?.hasError">
-              {{signUpForm.get('dob')?.getError("message")}}
-            </p>  
-            <p
+            </mat-form-field>
+            <div
               class="error-message"
               *ngIf="
-                signUpForm.get('dob')?.hasError('required') &&
-                signUpForm.get('dob')?.touched
+                signUpForm.get('dob')?.invalid &&
+                (signUpForm.get('dob')?.dirty || signUpForm.get('dob')?.touched)
               "
             >
-              Date of Birth is required.
-            </p>
-            <p
-              class="error-message"
-              *ngIf="
-                signUpForm.get('dob')?.hasError('dobInvalid') &&
-                signUpForm.get('dob')?.touched
-              "
-            >
-              {{ signUpForm.get("dob")?.getError("message") }}
-            </p>
+              <p *ngIf="signUpForm.get('dob')?.errors['required']">
+                Date of birth is required
+              </p>
+              <p *ngIf="signUpForm.get('dob')?.errors['dobInvalidAgeHigh']">
+                Age should be less than 80
+              </p>
+              <p *ngIf="signUpForm.get('dob')?.errors['dobInvalidAgeLow']">
+                Age should be greater than 16
+              </p>
+            </div>
           </div>
           <button
             type="submit"
