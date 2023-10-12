@@ -4,12 +4,14 @@ import { InputFieldComponent } from './components/input-field/input-field.compon
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 
 @NgModule({
   declarations: [
-    InputFieldComponent
+    InputFieldComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
