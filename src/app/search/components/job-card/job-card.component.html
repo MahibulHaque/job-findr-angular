@@ -1,0 +1,18 @@
+<mat-card class="job-card">
+  <div class="iconContainer" [style.background-color]="iconContainerBg">
+    <lucide-icon [name]="iconName"></lucide-icon>
+  </div>
+  <mat-card-content>
+    <mat-card-title>{{ jobType }}</mat-card-title>
+    <div class="salaryContainer">
+      <div class="circle"></div>
+      <h5 class="salaryRange">${{ minSalary }} - ${{ maxSalary }}</h5>
+    </div>
+  </mat-card-content>
+  <mat-card-footer class="card-footer"
+    ><div class="info-container">
+      <p>{{ peopleApplied }} Applied</p>
+      <div class="ratingIconContainer"><lucide-icon name="star"></lucide-icon><div>{{rating}}</div></div>
+    </div></mat-card-footer
+  >
+</mat-card>

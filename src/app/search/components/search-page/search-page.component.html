@@ -1,1 +1,42 @@
-<p>search-page works!</p>
+<section class="search-page-wrapper">
+  <h1>Popular Job</h1>
+  <div class="jobTypeContainer">
+    <app-job-card
+      [jobType]="'UI/UX Designer'"
+      [minSalary]="300"
+      [maxSalary]="1800"
+      [peopleApplied]="5000"
+      [rating]="5"
+      [iconName]="'pen-tool'"
+      [iconContainerBg]="'rgb(103, 131, 255)'"
+    ></app-job-card>
+    <app-job-card
+      [jobType]="'Web Developer'"
+      [minSalary]="500"
+      [maxSalary]="2000"
+      [peopleApplied]="4200"
+      [rating]="5"
+      [iconName]="'monitor'"
+      [iconContainerBg]="'rgb(255, 220, 103)'"
+    ></app-job-card>
+    <app-job-card
+      [jobType]="'Researcher'"
+      [minSalary]="220"
+      [maxSalary]="1200"
+      [peopleApplied]="3250"
+      [rating]="5"
+      [iconName]="'search-code'"
+      [iconContainerBg]="'rgb(103, 207, 255)'"
+    ></app-job-card>
+    <app-job-card
+      [jobType]="'Data Analyst'"
+      [minSalary]="600"
+      [maxSalary]="2000"
+      [peopleApplied]="3000"
+      [rating]="5"
+      [iconName]="'database'"
+      [iconContainerBg]="'rgb(255, 103, 103)'"
+    ></app-job-card>
+  </div>
+</section>
+<!-- Job Type Container -->
