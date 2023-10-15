@@ -30,6 +30,7 @@
         line-height: 2rem;
       }
     }
+
   }
 }
 
@@ -43,4 +44,19 @@
 
 .inputField{
   width: 100%;
+}
+.existAccount{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &>span{
+    font-weight: 500;
+  }
+}
+
+.linkText {
+  color: #2d86da;
+  padding-left: 0.5ch;
+  text-decoration: none;
 }

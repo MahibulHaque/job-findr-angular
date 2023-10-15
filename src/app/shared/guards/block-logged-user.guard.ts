@@ -12,11 +12,12 @@ import { UserPersistanceService } from '../services/user-persistance.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class BlockLoggedUserGuard implements CanActivate {
   constructor(
     private userPersistanceService: UserPersistanceService,
     private router: Router
   ) {}
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -26,9 +27,9 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     const isLoggedIn = this.userPersistanceService.isLoggedIn();
-    if (!isLoggedIn) {
-      return this.router.parseUrl('auth/login');
+    if (isLoggedIn) {
+      return this.router.parseUrl('/');
     }
-   return true;
+    return true;
   }
 }

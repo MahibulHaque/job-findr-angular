@@ -1,1 +1,42 @@
-<p>login works!</p>
+<div class="loginFormContainer">
+  <div>
+    <h1>Login to your account</h1>
+    <form
+      [formGroup]="loginForm"
+      (submit)="handleLoginFormSubmit()"
+      class="loginForm"
+    >
+      <app-input-field
+        title="Email"
+        inputType="email"
+        placeholder="name@company.com"
+        [required]="true"
+        [controller]="getFormControl('email')"
+        formControlName="email"
+        class="inputField"
+      ></app-input-field>
+      <app-input-field
+        title="Password"
+        inputType="password"
+        placeholder="At least 8 character long"
+        [required]="true"
+        [controller]="getFormControl('password')"
+        formControlName="password"
+        class="inputField"
+      ></app-input-field>
+      <app-primary-button
+        [isDisabled]="loginForm.invalid || loginForm.pristine"
+        text="login"
+        type="submit"
+        class="loginButton"
+      ></app-primary-button>
+      <div class="newAccount">
+        <span>
+          Don't have an account?
+          <a routerLink="/auth/signup" class="linkText">Sign Up</a>
+        </span>
+        <mat-spinner [diameter]="25" *ngIf="showProgressSpinner"></mat-spinner>
+      </div>
+    </form>
+  </div>
+</div>

@@ -51,11 +51,17 @@
         [maximumAge]="80"
         [minimumAge]="16"
       ></app-date-field>
-      <app-primary-button text="sign up"
-      type="submit"></app-primary-button>
-      <div class="mediumText gray-text forgotPassword">
-        Already have an account?
-        <a routerLink="/login" class="linkText">Log in</a>
+      <app-primary-button
+        [isDisabled]="signUpForm.invalid || signUpForm.pristine"
+        text="sign up"
+        type="submit"
+      ></app-primary-button>
+      <div class="existAccount">
+        <span>
+          Already have an account?
+          <a routerLink="/auth/login" class="linkText">Log in</a>
+        </span>
+        <mat-spinner [diameter]="25" *ngIf="showProgressSpinner"></mat-spinner>
       </div>
     </form>
   </div>

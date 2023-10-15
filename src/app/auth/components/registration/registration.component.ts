@@ -6,14 +6,28 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { takeUntil } from 'rxjs';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss'],
 })
-export class RegistrationComponent {
-  constructor(private formBuilder: FormBuilder) {}
+export class RegistrationComponent extends Unsubscribe {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthService,
+    private snackBar: MatSnackBar
+  ) {
+    super();
+  }
+  showProgressSpinner = false;
+  signUpError = false;
 
   dobValidator = (control: AbstractControl): ValidationErrors | null => {
     if (control.value) {
@@ -77,6 +91,41 @@ export class RegistrationComponent {
   }
 
   handleSignupFormSubmit() {
-    // Implement your form submission logic here
+    const { username, email, password, repassword, country, dob } = this
+      .signUpForm.value as {
+      username: string;
+      email: string;
+      password: string;
+      repassword: string;
+      country: string;
+      dob: string;
+    };
+
+    if (username && password && email && repassword && dob && country) {
+      this.showProgressSpinner = true;
+      this.authService
+        .signUpUser({ username, email, password, dob, country })
+        .pipe(takeUntil(this.unsubscribe$))
+        .subscribe({
+          next: (res) => {
+            localStorage.setItem('accessToken', res.accessToken);
+            this.showProgressSpinner = false;
+            this.router.navigate(['dashboard']);
+          },
+          error: (err) => {
+            this.showSnackbarError(err.error.message);
+            this.signUpError = true;
+            this.showProgressSpinner = false;
+          },
+        });
+    }
+  }
+
+  showSnackbarError(message: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 2000,
+      horizontalPosition: 'end', // Position at the right
+      verticalPosition: 'bottom', // Position at the bottom
+    });
   }
 }

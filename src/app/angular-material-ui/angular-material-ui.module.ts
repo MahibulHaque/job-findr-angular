@@ -38,6 +38,7 @@ const AngularMaterialUIComponents = [
   MatDividerModule,
   MatProgressSpinnerModule,
   MatDialogModule,
+  MatProgressSpinnerModule
 ];
 
 @NgModule({

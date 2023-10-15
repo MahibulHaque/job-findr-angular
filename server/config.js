@@ -1,0 +1,2 @@
+exports.JWT_SECRET =
+  "7459294c2b3d6724d1cd329cc4e24fabba3d8854eb0ad0f889d0a046b3a27bbe";

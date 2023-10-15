@@ -1,0 +1,61 @@
+{
+  "users": [
+    {
+      "username": "Frosty",
+      "email": "frosty12@gmail.com",
+      "password": "$2b$10$ESFhwL89j2VDFFj5gC2cxO39Jsf1lE9RwENV2xDkWwgyKSlCgPJqC",
+      "dob": "1987-07-15T07:00:00.000Z",
+      "country": "Bangladesh",
+      "id": "6dc98f7c-76d1-44d1-94a6-82d4ee58dfa8"
+    }
+  ],
+  "profiles": [
+    {
+      "id": 1,
+      "userId": 1,
+      "job": "Plumber"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "job": "developer"
+    },
+    {
+      "id": 3,
+      "userId": 3,
+      "job": "Manager"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Spanner",
+      "category": "tools"
+    },
+    {
+      "id": 2,
+      "name": "Hammer",
+      "category": "tools"
+    },
+    {
+      "id": 3,
+      "name": "Screw driver",
+      "category": "tools"
+    },
+    {
+      "id": 4,
+      "name": "Paint brush",
+      "category": "paint"
+    },
+    {
+      "id": 5,
+      "name": "Paint roller",
+      "category": "paint"
+    },
+    {
+      "id": 6,
+      "name": "Paint",
+      "category": "paint"
+    }
+  ]
+}
