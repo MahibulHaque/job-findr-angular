@@ -1,0 +1,62 @@
+<div class="signupFormContainer">
+  <div>
+    <h1>Create and Account</h1>
+    <form (ngSubmit)="handleSignupFormSubmit()" [formGroup]="signUpForm">
+      <app-input-field
+        [title]="'Username'"
+        [inputType]="'username'"
+        [placeholder]="'John Doe'"
+        [required]="true"
+        [controller]="getFormControl('username')"
+        [minLength]="3"
+        [maxLength]="30"
+        class="inputField"
+      ></app-input-field>
+      <app-input-field
+        [title]="'Email'"
+        [inputType]="'email'"
+        [placeholder]="'name@company.com'"
+        [required]="true"
+        [controller]="getFormControl('email')"
+        class="inputField"
+      ></app-input-field>
+      <app-input-field
+        [title]="'Password'"
+        [inputType]="'password'"
+        [placeholder]="'••••••••'"
+        [required]="true"
+        [controller]="getFormControl('password')"
+        [minLength]="8"
+        class="inputField"
+      ></app-input-field>
+      <app-input-field
+        [title]="'Confirm Password'"
+        [inputType]="'password'"
+        [placeholder]="'••••••••'"
+        [required]="true"
+        [controller]="getFormControl('repassword')"
+        [minLength]="8"
+      ></app-input-field>
+      <app-autocomplete-field
+        [title]="'Choose Country'"
+        [required]="true"
+        [placeholder]="'Bangladesh'"
+        [controller]="getFormControl('country')"
+        [options]="countryOptions"
+      ></app-autocomplete-field>
+      <app-date-field
+        [title]="'Date of birth'"
+        [required]="true"
+        [controller]="getFormControl('dob')"
+        [maximumAge]="80"
+        [minimumAge]="16"
+      ></app-date-field>
+      <app-primary-button text="sign up"
+      type="submit"></app-primary-button>
+      <div class="mediumText gray-text forgotPassword">
+        Already have an account?
+        <a routerLink="/login" class="linkText">Log in</a>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<mat-form-field class="autoCompleteField" [appearance]="appearance" >
+  <mat-label>{{ title | titlecase }}</mat-label>
+  <input type="text"
+         placeholder="placeholder"
+         aria-label="Country"
+         matInput
+         [formControl]="controller"
+         [required]="required"
+         [matAutocomplete]="auto">
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      {{option}}
+    </mat-option>
+  </mat-autocomplete>
+  <mat-error *ngIf="!this.controller.valid">
+    {{ getErrorMessage() }}
+  </mat-error>
+</mat-form-field>

@@ -1,0 +1,16 @@
+<mat-form-field class="dateField" [appearance]="appearance">
+  <mat-label>{{ title | titlecase }}</mat-label>
+  <input
+    matInput
+    [matDatepicker]="picker"
+    [max]="maxDate"
+    [formControl]="controller"
+    [required]="required"
+  />
+  <mat-hint>MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+  <mat-error *ngIf="!this.controller.valid">
+    {{ getErrorMessage() }}
+  </mat-error>
+</mat-form-field>

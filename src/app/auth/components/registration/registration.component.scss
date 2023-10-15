@@ -1,0 +1,46 @@
+.signupFormContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 1.5rem;
+  padding-block: 2rem;
+  margin-inline: auto;
+  min-height: 100vh;
+
+  @media (min-width: 1024px) {
+    padding-block: 0rem;
+  }
+
+  & > div {
+    border-radius: 0.5rem;
+
+    @media (min-width: 640px) {
+      max-width: 28rem;
+    }
+
+    & > h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.75rem;
+      text-align: center;
+
+      @media (min-width: 768px) {
+        font-size: 1.5rem;
+        line-height: 2rem;
+      }
+    }
+  }
+}
+
+.signUpForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+.inputField{
+  width: 100%;
+}
