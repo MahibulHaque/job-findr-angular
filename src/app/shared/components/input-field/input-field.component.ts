@@ -29,7 +29,7 @@ export class InputFieldComponent implements ControlValueAccessor {
   @Input() maxLength: number = 100;
   @Input() controller!: FormControl;
   @Input() appearance: MatFormFieldAppearance = 'fill';
-
+  hide:boolean = true
   invalid = true;
   value: string = '';
   onChange = (val: any) => {};

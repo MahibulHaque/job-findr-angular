@@ -64,12 +64,7 @@ export class RegistrationComponent extends Unsubscribe {
     country: new FormControl('', [Validators.required]),
   });
 
-  countryOptions: string[] = [
-    'United States',
-    'Bangladesh',
-    'India',
-    'United Kingdom',
-  ];
+  countryOptions: string[] = ['us', 'bd', 'in', 'uk'];
 
   confirmPasswordValidator = (
     control: AbstractControl
