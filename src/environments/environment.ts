@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://jsearch.p.rapidapi.com/search',
+  apiUrl: 'https://jsearch.p.rapidapi.com',
   rapidApiKey:'e6e1763a2fmsheed1cb836116991p1d31d8jsn2fe112926e86'
 };
 

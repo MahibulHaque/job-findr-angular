@@ -10,6 +10,11 @@ import { PrimaryButtonComponent } from './components/primary-button/primary-butt
 import { SidenavDrawerComponent } from './components/sidenav-drawer/sidenav-drawer.component';
 import { TopNavbarComponent } from './components/top-navbar/top-navbar.component';
 import { RouterModule } from '@angular/router';
+import {
+  JobDescriptionDialogComponent,
+  JobDescriptionDialogContent,
+} from './components/job-description-dialog/job-description-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -19,11 +24,14 @@ import { RouterModule } from '@angular/router';
     PrimaryButtonComponent,
     SidenavDrawerComponent,
     TopNavbarComponent,
+    JobDescriptionDialogComponent,
+    JobDescriptionDialogContent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     MatFormFieldModule,
+    MatDialogModule,
     ReactiveFormsModule,
     AngularMaterialUiModule,
   ],
@@ -34,6 +42,8 @@ import { RouterModule } from '@angular/router';
     PrimaryButtonComponent,
     SidenavDrawerComponent,
     TopNavbarComponent,
+    JobDescriptionDialogComponent,
+    JobDescriptionDialogContent,
   ],
 })
 export class SharedModule {}
