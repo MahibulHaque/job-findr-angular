@@ -17,6 +17,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+
 const AngularMaterialUIComponents = [
   MatAutocompleteModule,
   MatOptionModule,
@@ -38,7 +42,10 @@ const AngularMaterialUIComponents = [
   MatDividerModule,
   MatProgressSpinnerModule,
   MatDialogModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatSidenavModule,
+  MatToolbarModule,
+  MatListModule,
 ];
 
 @NgModule({

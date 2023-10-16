@@ -7,10 +7,33 @@ import { AutocompleteFieldComponent } from './components/autocomplete-field/auto
 import { AngularMaterialUiModule } from '../angular-material-ui/angular-material-ui.module';
 import { DateFieldComponent } from './components/date-field/date-field.component';
 import { PrimaryButtonComponent } from './components/primary-button/primary-button.component';
+import { SidenavDrawerComponent } from './components/sidenav-drawer/sidenav-drawer.component';
+import { TopNavbarComponent } from './components/top-navbar/top-navbar.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [InputFieldComponent, AutocompleteFieldComponent, DateFieldComponent, PrimaryButtonComponent],
-  imports: [CommonModule, MatFormFieldModule, ReactiveFormsModule, AngularMaterialUiModule],
-  exports: [InputFieldComponent, AutocompleteFieldComponent, DateFieldComponent, PrimaryButtonComponent],
+  declarations: [
+    InputFieldComponent,
+    AutocompleteFieldComponent,
+    DateFieldComponent,
+    PrimaryButtonComponent,
+    SidenavDrawerComponent,
+    TopNavbarComponent,
+  ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    AngularMaterialUiModule,
+  ],
+  exports: [
+    InputFieldComponent,
+    AutocompleteFieldComponent,
+    DateFieldComponent,
+    PrimaryButtonComponent,
+    SidenavDrawerComponent,
+    TopNavbarComponent,
+  ],
 })
 export class SharedModule {}
