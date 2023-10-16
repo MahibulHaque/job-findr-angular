@@ -1,0 +1,19 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title-group class="card-title-group">
+      <mat-card-title>{{ jobTitle }}</mat-card-title>
+      <mat-card-subtitle>
+        <mat-icon>place</mat-icon>
+        <p>{{ jobLocation }}</p>
+      </mat-card-subtitle>
+    </mat-card-title-group>
+    <img mat-card-sm-image [src]="logoLink" />
+  </mat-card-header>
+  <mat-card-content class="content-line-clamp">
+    {{ jobDescription }}
+  </mat-card-content>
+  <mat-card-footer>
+    <p class="green-paragraph">Detail Hiring</p>
+    <p class="gray-paragraph">{{ formatTimestamp(jobPostedTimeStamp) }}</p>
+  </mat-card-footer>
+</mat-card>

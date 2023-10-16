@@ -51,7 +51,11 @@ export class LoginComponent extends Unsubscribe implements OnInit {
             this.router.navigate(['dashboard']);
           },
           error: (err) => {
-            this.showSnackbarError(err.error.message);
+            if (err.error.message) {
+              this.showSnackbarError(err.error.message);
+            } else {
+              this.showSnackbarError('An error occured during signin');
+            }
             this.showProgressSpinner = false;
           },
         });

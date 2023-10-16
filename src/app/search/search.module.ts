@@ -11,7 +11,7 @@ import {
   Database,
   MapPin,
   SearchCode,
-  Star
+  Star,
 } from 'lucide-angular';
 import { MatIconModule } from '@angular/material/icon';
 import { SearchInputBarComponent } from './components/search-input-bar/search-input-bar.component';
@@ -19,9 +19,18 @@ import { SharedModule } from '../shared/shared.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { SearchResultDisplayCardComponent } from './components/search-result-display-card/search-result-display-card.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
-  declarations: [SearchPageComponent, JobCardComponent, SearchInputBarComponent],
+  declarations: [
+    SearchPageComponent,
+    JobCardComponent,
+    SearchInputBarComponent,
+    SearchResultDisplayCardComponent,
+  ],
   imports: [
     CommonModule,
     SearchRoutingModule,
@@ -33,10 +42,12 @@ import { MatInputModule } from '@angular/material/input';
       Database,
       MapPin,
       SearchCode,
-      Star
+      Star,
     }),
     MatFormFieldModule,
     MatInputModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
     FormsModule,
     SharedModule,
   ],

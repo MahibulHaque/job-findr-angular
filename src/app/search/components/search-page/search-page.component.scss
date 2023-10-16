@@ -13,7 +13,23 @@
   padding-bottom: 2rem;
   gap: 2rem;
 
-  &>h1{
+  & > h1 {
     text-align: left;
   }
+}
+
+.search-results-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  width: 90%;
+  gap: 16px;
+  place-items: center;
+  max-width: 1000px;
+}
+
+.searched-job-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 400px;
 }

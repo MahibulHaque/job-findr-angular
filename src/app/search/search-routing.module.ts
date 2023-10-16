@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: SearchPageComponent,
-    // canActivate:[AuthGuard]
+    canActivate:[AuthGuard]
   },
 ];
 

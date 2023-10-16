@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'https://jsearch.p.rapidapi.com/search',
+  rapidApiKey:'e6e1763a2fmsheed1cb836116991p1d31d8jsn2fe112926e86'
 };
 
 /*
