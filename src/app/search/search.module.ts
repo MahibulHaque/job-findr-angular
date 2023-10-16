@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { SearchRoutingModule } from './search-routing.module';
 import { SearchPageComponent } from './components/search-page/search-page.component';
 import { JobCardComponent } from './components/job-card/job-card.component';
@@ -15,9 +14,14 @@ import {
   Star
 } from 'lucide-angular';
 import { MatIconModule } from '@angular/material/icon';
+import { SearchInputBarComponent } from './components/search-input-bar/search-input-bar.component';
+import { SharedModule } from '../shared/shared.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-  declarations: [SearchPageComponent, JobCardComponent],
+  declarations: [SearchPageComponent, JobCardComponent, SearchInputBarComponent],
   imports: [
     CommonModule,
     SearchRoutingModule,
@@ -31,6 +35,10 @@ import { MatIconModule } from '@angular/material/icon';
       SearchCode,
       Star
     }),
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    SharedModule,
   ],
 })
 export class SearchModule {}
