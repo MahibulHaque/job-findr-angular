@@ -5,16 +5,20 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AutocompleteFieldComponent } from './components/autocomplete-field/autocomplete-field.component';
 import { AngularMaterialUiModule } from '../angular-material-ui/angular-material-ui.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatRadioModule } from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSliderModule} from '@angular/material/slider';
 import { DateFieldComponent } from './components/date-field/date-field.component';
 import { PrimaryButtonComponent } from './components/primary-button/primary-button.component';
-import { SidenavDrawerComponent } from './components/sidenav-drawer/sidenav-drawer.component';
 import { TopNavbarComponent } from './components/top-navbar/top-navbar.component';
 import { RouterModule } from '@angular/router';
 import {
   JobDescriptionDialogComponent,
   JobDescriptionDialogContent,
 } from './components/job-description-dialog/job-description-dialog.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { FilterMenuComponent } from './components/filter-menu/filter-menu.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -22,10 +26,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     AutocompleteFieldComponent,
     DateFieldComponent,
     PrimaryButtonComponent,
-    SidenavDrawerComponent,
     TopNavbarComponent,
     JobDescriptionDialogComponent,
     JobDescriptionDialogContent,
+    FilterMenuComponent,
   ],
   imports: [
     CommonModule,
@@ -34,16 +38,20 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     ReactiveFormsModule,
     AngularMaterialUiModule,
+    MatRadioModule,
+    MatSliderModule,
+    MatButtonModule,
+    MatCheckboxModule
   ],
   exports: [
     InputFieldComponent,
     AutocompleteFieldComponent,
     DateFieldComponent,
     PrimaryButtonComponent,
-    SidenavDrawerComponent,
     TopNavbarComponent,
     JobDescriptionDialogComponent,
     JobDescriptionDialogContent,
+    FilterMenuComponent,
   ],
 })
 export class SharedModule {}

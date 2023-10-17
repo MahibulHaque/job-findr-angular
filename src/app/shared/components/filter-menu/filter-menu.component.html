@@ -1,0 +1,102 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav role="navigation" [position]="'end'">
+        <mat-nav-list>
+            <div class="fxFlex-row border-b">
+                <h1>Filter</h1>
+                <button mat-raised-button color="primary">Reset</button>
+            </div>
+            <div class="fxFlex-col">
+                <h1>Sort By</h1>
+                <mat-radio-group aria-label="Employment">
+                    <mat-radio-button value="1">Recently</mat-radio-button>
+                    <mat-radio-button value="2">A-Z</mat-radio-button>
+                    <mat-radio-button value="3">Top Salary</mat-radio-button>
+                    <mat-radio-button value="4">Rating</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="fxFlex-col">
+                <h1>Salary Range</h1>
+                <mat-slider min="0" max="3000">
+                    <input value="100" matSliderStartThumb>
+                    <input value="400" matSliderEndThumb>
+                </mat-slider>
+            </div>
+            <div class="fxFlex-col">
+                <h1>Job Type</h1>
+                <section>
+                    <mat-checkbox>Full Time</mat-checkbox>
+                    <mat-checkbox>Part Time</mat-checkbox>
+                    <mat-checkbox>Internship</mat-checkbox>
+                    <mat-checkbox>Contractual</mat-checkbox>
+                </section>
+            </div>
+            <div class="fxFlex-col">
+                <h1>Experience</h1>
+                <section>
+                    <mat-checkbox>Fresh Graduate</mat-checkbox>
+                    <mat-checkbox>Beginner</mat-checkbox>
+                    <mat-checkbox>Intermediate</mat-checkbox>
+                    <mat-checkbox>Expert</mat-checkbox>
+                </section>
+            </div>
+            <div class="fxFlex-col">
+                <h1>Position</h1>
+                <section>
+                    <mat-checkbox>On-site</mat-checkbox>
+                    <mat-checkbox>Remote</mat-checkbox>
+                </section>
+            </div>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary" class="mat-toolbar-gt-xs">
+            <div class="hide-xs-div">
+                <button mat-icon-button (click)="sidenav.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
+            <div>
+                <a routerLink="/home">
+                    Job Finder
+                </a>
+            </div>
+            <div class="fxFlex fxHide-xs">
+                <ul class="navigation-items ul-fxLayout">
+                    <li>
+                        <a *ngIf="!userAuthenticated" routerLink="/auth/login">
+                            <mat-icon class="icon">input</mat-icon>
+                            <span class="label">Login</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a *ngIf="userAuthenticated" routerLink="/home">
+                            <mat-icon class="icon">home</mat-icon>
+                            <span class="label">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/dashboard">
+                            <mat-icon class="icon">dashboard</mat-icon>
+                            <span class="label">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/search">
+                            <mat-icon class="icon">search</mat-icon>
+                            <span class="label">Search Jobs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a *ngIf="userAuthenticated" (click)="logoutUser()" type="button">
+                            <mat-icon class="icon">input</mat-icon>
+                            <span class="label">LogOut</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </mat-toolbar>
+        <!-- <main>
+        <router-outlet></router-outlet>
+      </main> -->
+    </mat-sidenav-content>
+</mat-sidenav-container>

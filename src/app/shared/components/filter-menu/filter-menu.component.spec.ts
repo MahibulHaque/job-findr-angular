@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SidenavDrawerComponent } from './sidenav-drawer.component';
+import { FilterMenuComponent } from './filter-menu.component';
 
-describe('SidenavDrawerComponent', () => {
-  let component: SidenavDrawerComponent;
-  let fixture: ComponentFixture<SidenavDrawerComponent>;
+describe('FilterMenuComponent', () => {
+  let component: FilterMenuComponent;
+  let fixture: ComponentFixture<FilterMenuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SidenavDrawerComponent ]
+      declarations: [ FilterMenuComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SidenavDrawerComponent);
+    fixture = TestBed.createComponent(FilterMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
