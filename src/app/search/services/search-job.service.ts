@@ -25,19 +25,4 @@ export class SearchService {
     });
   }
 }
-export class JobDetailSearchService {
-  private apiUrl = environment.apiUrl;
-  constructor(private httpClient: HttpClient) {}
 
-  getJobDetail(jobId: string): Observable<JobDetailResponseInterface> {
-    const url = new URL(`${this.apiUrl}/job-details`);
-    url.searchParams.set('job_id', jobId);
-
-    return this.httpClient.get<JobDetailResponseInterface>(url.toString(), {
-      headers: {
-        'X-RapidAPI-Key': environment.rapidApiKey,
-        'X-RapidAPI-Host': 'jsearch.p.rapidapi.com',
-      },
-    });
-  }
-}

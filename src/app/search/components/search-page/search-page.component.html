@@ -18,7 +18,7 @@
       <div class="searched-job-wrapper" *ngFor="let job of uiDesignerJobs">
         <app-search-result-display-card [logoLink]="job?.employer_logo"
           [jobLocation]="job?.job_city + ', ' + job?.job_country" [jobPostedTimeStamp]="job.job_posted_at_timestamp"
-          [jobTitle]="job?.job_title" [jobId]="'123'" [jobType]="job?.job_employment_type"
+          [jobTitle]="job?.job_title" [jobId]="job?.job_id" [jobType]="job?.job_employment_type"
           [jobDescription]="job.job_description"></app-search-result-display-card>
       </div>
     </ng-container>
@@ -28,7 +28,7 @@
       <div class="searched-job-wrapper" *ngFor="let job of dataEngineerJobs">
         <app-search-result-display-card [logoLink]="job?.employer_logo"
           [jobLocation]="job?.job_city + ', ' + job?.job_country" [jobPostedTimeStamp]="job.job_posted_at_timestamp"
-          [jobTitle]="job?.job_title" [jobId]="'123'" [jobType]="job?.job_employment_type"
+          [jobTitle]="job?.job_title" [jobId]="job?.job_id" [jobType]="job?.job_employment_type"
           [jobDescription]="job.job_description"></app-search-result-display-card>
       </div>
     </ng-container>
@@ -38,7 +38,7 @@
       <div class="searched-job-wrapper" *ngFor="let job of webDevJobs">
         <app-search-result-display-card [logoLink]="job?.employer_logo"
           [jobLocation]="job?.job_city + ', ' + job?.job_country" [jobPostedTimeStamp]="job.job_posted_at_timestamp"
-          [jobTitle]="job?.job_title" [jobId]="'123'" [jobType]="job?.job_employment_type"
+          [jobTitle]="job?.job_title" [jobId]="job?.job_id" [jobType]="job?.job_employment_type"
           [jobDescription]="job.job_description"></app-search-result-display-card>
       </div>
     </ng-container>
@@ -46,7 +46,7 @@
       <div class="searched-job-wrapper" *ngFor="let job of searchedJobs">
         <app-search-result-display-card [logoLink]="job?.employer_logo"
           [jobLocation]="job?.job_city + ', ' + job?.job_country" [jobPostedTimeStamp]="job.job_posted_at_timestamp"
-          [jobTitle]="job?.job_title" [jobId]="'123'" [jobType]="job?.job_employment_type"
+          [jobTitle]="job?.job_title" [jobId]="job?.job_id" [jobType]="job?.job_employment_type"
           [jobDescription]="job.job_description"></app-search-result-display-card>
       </div>
     </ng-container>

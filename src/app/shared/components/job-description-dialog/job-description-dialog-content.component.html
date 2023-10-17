@@ -3,29 +3,27 @@
     <img src="../../../../assets/job-description-card-bg.png" alt="job-desc-card-bg" />
     <div class="overlay">
       <div class="logo">
-        <img src="your-logo-image-path.png" alt="logo" />
+        <img [src]="data.companyLogo" alt="logo" />
       </div>
     </div>
   </div>
   <div class="job-detail-wrapper">
     <div class="detail-block">
       <h3>EXPERIENCE</h3>
-      <p>{{data.requiredExperience}}</p>
+      <p>{{data.requiredExperience}} Months</p>
     </div>
     <div class="detail-block">
       <h3>EMPLOYMENT</h3>
       <p>{{data.employmentType}}</p>
     </div>
-    <div class="detail-block">
-      <h3>SALARY</h3>
-      <p>${{data.minSalary}}k - ${{data.maxSalary}}k</p>
-    </div>
   </div>
   <h1 mat-dialog-title>{{data.job_title}}</h1>
   <h2>Job Description</h2>
-  <p>{{data.job_description}}</p>
+  <p class="job-description-paragraph">{{data.job_description}}</p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="application-link-button">
+    <a [href]='data.jobApplicationLink' target="_blank">Apply</a>
+  </button>
 </mat-dialog-actions>

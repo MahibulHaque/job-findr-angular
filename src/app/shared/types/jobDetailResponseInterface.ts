@@ -34,8 +34,8 @@ export interface JobDetailData {
   job_required_skills: string[];
   job_required_education: JobRequiredEducation;
   job_experience_in_place_of_education: boolean;
-  job_min_salary: null;
-  job_max_salary: null;
+  job_min_salary: null | number;
+  job_max_salary: null | number;
   job_salary_currency: null;
   job_salary_period: null;
   job_highlights: JobHighlights;

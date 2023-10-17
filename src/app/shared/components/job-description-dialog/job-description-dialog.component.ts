@@ -1,16 +1,16 @@
 import { Component, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { CacheService } from '../../services/caching.service';
-import {
-  JobDetailSearchService,
-  SearchService,
-} from 'src/app/search/services/search-job.service';
+import { map, takeUntil } from 'rxjs';
+import { Unsubscribe } from '../../classes/unsubscribe.class';
+import { JobDetailSearchService } from 'src/app/search/services/job-detail-search.service';
 
 export interface JobDetailInterface {
   job_title: string;
   job_description: string;
+  jobApplicationLink: string;
   companyLogo: string;
-  requiredExperience: string;
+  requiredExperience: number;
   employmentType: string;
   minSalary: number;
   maxSalary: number;
@@ -21,12 +21,14 @@ export interface JobDetailInterface {
   templateUrl: './job-description-dialog.component.html',
   styleUrls: ['./job-description-dialog.component.scss'],
 })
-export class JobDescriptionDialogComponent {
+export class JobDescriptionDialogComponent extends Unsubscribe {
   constructor(
     public dialog: MatDialog,
     private cachingService: CacheService,
     private searchService: JobDetailSearchService
-  ) {}
+  ) {
+    super();
+  }
   @Input() jobId: string = '';
 
   jobTitle: string = '';
@@ -49,18 +51,35 @@ export class JobDescriptionDialogComponent {
       this.openDialogWithJobDetails(cachedData);
     } else {
       // Fetch data from the API if it's not in the cache
-      this.searchService.getJobDetail(this.jobId).subscribe(
-        (res) => {
-          // Cache the data
-          this.cachingService.setItem(this.jobId, res.data);
-
-          // Open the dialog with the fetched jobDetails
-          this.openDialogWithJobDetails(res.data);
-        },
-        (error) => {
-          console.error('Error fetching job details:', error);
-        }
-      );
+      this.searchService
+        .getJobDetail(this.jobId)
+        .pipe(
+          map((res) => {
+            const data: JobDetailInterface = {
+              companyLogo: res.data[0].employer_logo,
+              employmentType: res.data[0].job_employment_type,
+              job_title: res.data[0].job_title,
+              jobApplicationLink: res.data[0].job_apply_link,
+              job_description: res.data[0].job_description,
+              minSalary: res.data[0].job_min_salary,
+              maxSalary: res.data[0].job_max_salary,
+              requiredExperience:
+                res.data[0].job_required_experience
+                  .required_experience_in_months,
+            };
+            return data;
+          }),
+          takeUntil(this.unsubscribe$)
+        )
+        .subscribe({
+          next: (data) => {
+            this.cachingService.setItem(this.jobId, data);
+            this.openDialogWithJobDetails(data);
+          },
+          error: (err) => {
+            console.error(err);
+          },
+        });
     }
   }
 
@@ -69,9 +88,12 @@ export class JobDescriptionDialogComponent {
       data: jobDetails,
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((result) => {
+        console.log(`Dialog result: ${result}`);
+      });
   }
 }
 
