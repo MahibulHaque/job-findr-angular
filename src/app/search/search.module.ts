@@ -21,7 +21,6 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { SearchResultDisplayCardComponent } from './components/search-result-display-card/search-result-display-card.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({

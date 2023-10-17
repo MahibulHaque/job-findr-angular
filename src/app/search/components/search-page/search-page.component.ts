@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { takeUntil } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs';
 import { SearchService } from '../../services/search-job.service';
 import { CacheService } from 'src/app/shared/services/caching.service';
 import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
@@ -65,7 +65,7 @@ export class SearchPageComponent extends Unsubscribe implements OnInit {
         this.showProgressSpinner = true;
         this.searchService
           .searchJob(searchTerm)
-          .pipe(takeUntil(this.unsubscribe$))
+          .pipe(debounceTime(1000), takeUntil(this.unsubscribe$))
           .subscribe({
             next: (res) => {
               if (res.data && res.data.length > 0) {
