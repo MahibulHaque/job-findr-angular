@@ -1,23 +1,14 @@
-<mat-form-field
-  class="inputField"
-  [appearance]="appearance"
->
+<mat-form-field class="inputField" [appearance]="appearance">
   <mat-label>{{ title | titlecase }}</mat-label>
-  <input
-    matInput
-    [formControl]="controller"
-    [type]="inputType"
-    (change)="onValueChange($event)"
-    [placeholder]="placeholder"
-    [minLength]="minLength"
-    [maxLength]="maxLength"
-    [required]="required"
-    class="formInputField"
-  />
+  <input matInput [formControl]="controller" [type]="inputType" (change)="onValueChange($event)"
+    [placeholder]="placeholder" [minLength]="minLength" [maxLength]="maxLength" [required]="required"
+    class="formInputField" />
   <mat-error *ngIf="!this.controller.valid">
     {{ getErrorMessage() }}
   </mat-error>
 </mat-form-field>
+
+<!-- ! Click on the visibility button causes the Form to be submitted -->
 
 <!-- <mat-form-field
   [appearance]="appearance"

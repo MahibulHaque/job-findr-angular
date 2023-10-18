@@ -66,5 +66,7 @@ export class DataTableComponent implements OnInit {
     }
   }
 
+  
+
   nameFilter: string = '';
 }

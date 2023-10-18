@@ -12,6 +12,7 @@ export class JobsDataSource extends DataSource<JobSearchResponseData> {
   page: number = 1;
   pageSize: number = 1; // Initial page size
   totalCount: number = 0;
+  currentJobTitleFilter: string;
   constructor(
     private fetchJobsService: FetchJobsService,
     private cacheService: CacheService
@@ -27,16 +28,32 @@ export class JobsDataSource extends DataSource<JobSearchResponseData> {
     this.jobs$.complete();
   }
 
-  // loadJobs(): void {
-  //   this.isLoading$.next(true);
-  //   this.fetchJobsService
-  //     .fetchJobs('Software Engineer', this.page)
-  //     .subscribe((res) => {
-  //       this.jobs$.next(res.data);
-  //       this.isLoading$.next(false);
-  //       this.totalCount = res.data.length;
-  //     });
-  // }
+  applyJobTitleFilter(jobTitle: string): void {
+    this.isLoading$.next(true);
+  
+    // Check if data is available in the cache
+    const cachedData = this.cacheService.getItem<JobSearchResponseData[]>(`cachedJobsData-${this.page}`);
+  
+    if (cachedData) {
+      this.filterAndSetData(cachedData, jobTitle);
+      return;
+    }
+  
+    this.fetchJobsService.fetchJobs('Software Engineer', this.page).subscribe((res) => {
+      this.cacheService.setItem(`cachedJobsData-${this.page}`, res.data);
+      this.filterAndSetData(res.data, jobTitle);
+    });
+  }
+  
+  private filterAndSetData(data: JobSearchResponseData[], jobTitle: string): void {
+    this.currentJobTitleFilter = jobTitle;
+    const filteredData = jobTitle
+      ? data.filter((job) => job.job_title.toLowerCase().includes(jobTitle.toLowerCase()))
+      : data;
+    this.jobs$.next(filteredData);
+    this.isLoading$.next(false);
+    this.totalCount = filteredData.length;
+  }
   
 
   loadJobs(): void {

@@ -1,6 +1,9 @@
 <mat-spinner [diameter]="25" *ngIf="dataSource.isLoading$ | async"></mat-spinner>
-
 <div class="mat-elevation-z8">
+    <!-- <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    </mat-form-field> -->
     <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
         <!-- Employer Name Column -->
         <ng-container matColumnDef="Employer Name">
