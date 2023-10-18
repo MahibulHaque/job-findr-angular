@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { JobSearchResponse } from 'src/app/shared/types/jobSearchResponse.interface';
 import { JobDetailResponseInterface } from 'src/app/shared/types/jobDetailResponseInterface';
 // import { JobSearchResponse } from 'src/app/shared/types/jobSearchResponse.interface';
@@ -23,7 +23,8 @@ export class SearchService {
     query: string,
     employment_types?: string,
     experience?: string,
-    remote_jobs_only?: boolean
+    remote_jobs_only?: boolean,
+    sortBy?: string
   ): Observable<JobSearchResponse> {
     const url = new URL(`${this.apiUrl}/search`);
     url.searchParams.set('query', query);
@@ -40,11 +41,28 @@ export class SearchService {
       url.searchParams.set('remote_jobs_only', `${remote_jobs_only}`);
     }
 
-    return this.httpClient.get<JobSearchResponse>(url.toString(), {
-      headers: {
-        'X-RapidAPI-Key': environment.rapidApiKey,
-        'X-RapidAPI-Host': 'jsearch.p.rapidapi.com',
-      },
-    });
+    return this.httpClient
+      .get<JobSearchResponse>(url.toString(), {
+        headers: {
+          'X-RapidAPI-Key': environment.rapidApiKey,
+          'X-RapidAPI-Host': 'jsearch.p.rapidapi.com',
+        },
+      })
+      .pipe(
+        map((response) => {
+          if (response.data && sortBy === 'rating') {
+            response.data = response.data.sort(
+              (a, b) => a.job_apply_quality_score - b.job_apply_quality_score
+            );
+          }
+
+          if (response.data && sortBy === 'alphabet') {
+            response.data = response.data.sort((a, b) =>
+              a.job_title.localeCompare(b.job_title)
+            );
+          }
+          return response;
+        })
+      );
   }
 }

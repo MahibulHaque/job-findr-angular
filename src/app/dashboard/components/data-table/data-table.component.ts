@@ -3,6 +3,8 @@ import { JobsDataSource } from '../../services/job.dataSource';
 import { FetchJobsService } from '../../services/fetch-jobs.service';
 import { PageEvent } from '@angular/material/paginator';
 import { CacheService } from 'src/app/shared/services/caching.service';
+import { Sort } from '@angular/material/sort';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 export interface PeriodicElement {
   name: string;
@@ -32,7 +34,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class DataTableComponent implements OnInit {
   constructor(
     private fetchJobsService: FetchJobsService,
-    private cacheService: CacheService
+    private cacheService: CacheService,
+    private _liveAnnouncer: LiveAnnouncer
   ) {}
 
   ngOnInit(): void {
@@ -55,7 +58,13 @@ export class DataTableComponent implements OnInit {
     this.dataSource.loadJobs();
   }
 
-  nameFilter: string = '';
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
 
-  
+  nameFilter: string = '';
 }

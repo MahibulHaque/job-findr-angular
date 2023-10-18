@@ -45,6 +45,13 @@
   width: 100%;
 }
 
+toolbar-width {
+  display: flex;
+  align-items: center;
+  padding-block: 0.5rem;
+  min-width: 100%;
+}
+
 .w-full {
   width: 100%;
   max-width: 1400px;
@@ -56,7 +63,7 @@
   justify-content: space-between;
   width: 100%;
 
-  &>h1{
+  & > h1 {
     margin: 0;
   }
 }
@@ -65,4 +72,11 @@
   @media (min-width: 768px) {
     display: none;
   }
+}
+
+.flex-row-justify-end{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: flex-end;
 }

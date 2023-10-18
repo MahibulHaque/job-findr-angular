@@ -6,6 +6,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { debounceTime, fromEvent, map, takeUntil } from 'rxjs';
 import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
@@ -18,24 +19,32 @@ export class SearchInputBarComponent
   extends Unsubscribe
   implements AfterViewInit
 {
-  constructor() {
+  constructor(private fb: FormBuilder) {
     super();
   }
-  @ViewChild('queryInput') queryInput: ElementRef;
 
   @Output() valueChange = new EventEmitter<string>();
 
-  ngAfterViewInit(): void {
-    const jobSearchTerm = fromEvent<any>(
-      this.queryInput.nativeElement,
-      'keyup'
-    ).pipe(
-      map((event) => event.target.value),
-      debounceTime(1000)
-    );
+  searchForm = this.fb.group({
+    search: [''],
+  });
 
-    jobSearchTerm.pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
-      this.valueChange.emit(res);
-    });
+  ngAfterViewInit(): void {
+    this.searchForm.valueChanges
+      .pipe(debounceTime(1000), takeUntil(this.unsubscribe$))
+      .subscribe((formValue) => {
+        this.valueChange.emit(formValue.search);
+      });
+
+    // const jobSearchTerm = fromEvent<any>(
+    //   this.queryInput.nativeElement,
+    //   'keyup'
+    // ).pipe(
+    //   map((event) => event.target.value),
+    //   debounceTime(1000)
+    // );
+    // jobSearchTerm.pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
+    //   this.valueChange.emit(res);
+    // });
   }
 }

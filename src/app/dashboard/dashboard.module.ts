@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [DashboardComponent, DataTableComponent],
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     MatButtonModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
+    MatSortModule,
     FormsModule,
     SharedModule,
   ],

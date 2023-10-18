@@ -37,21 +37,12 @@ export class JobsDataSource extends DataSource<JobSearchResponseData> {
   //       this.totalCount = res.data.length;
   //     });
   // }
-  applyNameFilter(filterValue: string): void {
-    const filteredData = this.jobs$.value.filter(
-      (item) =>
-        item.employer_name.toLowerCase().includes(filterValue.toLowerCase()) ||
-        item.job_title.toLowerCase().includes(filterValue.toLowerCase())
-    );
-
-    this.jobs$.next(filteredData);
-  }
+  
 
   loadJobs(): void {
     // Check if data is available in the cache
-    const cachedData = this.cacheService.getItem<JobSearchResponseData[]>(
-      `cachedJobsData-${this.page}`
-    );
+    const cachedData =
+      this.cacheService.getItem<JobSearchResponseData[]>(`cachedJobsData-${this.page}`);
     if (cachedData) {
       this.jobs$.next(cachedData);
       this.isLoading$.next(false);
@@ -60,13 +51,11 @@ export class JobsDataSource extends DataSource<JobSearchResponseData> {
     }
 
     this.isLoading$.next(true);
-    this.fetchJobsService
-      .fetchJobs('Software Engineer', this.page)
-      .subscribe((res) => {
-        this.jobs$.next(res.data);
-        this.cacheService.setItem(`cachedJobsData-${this.page}`, res.data);
-        this.isLoading$.next(false);
-        this.totalCount = res.data.length;
-      });
+    this.fetchJobsService.fetchJobs('Software Engineer', this.page).subscribe((res) => {
+      this.jobs$.next(res.data);
+      this.cacheService.setItem(`cachedJobsData-${this.page}`, res.data);
+      this.isLoading$.next(false);
+      this.totalCount = res.data.length;
+    });
   }
 }

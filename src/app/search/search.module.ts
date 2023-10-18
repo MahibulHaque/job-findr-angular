@@ -17,7 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SearchInputBarComponent } from './components/search-input-bar/search-input-bar.component';
 import { SharedModule } from '../shared/shared.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { SearchResultDisplayCardComponent } from './components/search-result-display-card/search-result-display-card.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -47,7 +47,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatInputModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    FormsModule,
+    ReactiveFormsModule,
     SharedModule,
   ],
 })

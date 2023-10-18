@@ -58,10 +58,8 @@ export class SearchPageComponent extends Unsubscribe implements OnInit {
   experience: string;
   employment_types: string;
   remote_jobs_only: boolean = false;
+  sortBy: string;
   onFilterFormValueChange(formValue: any) {
-    console.log('Form value changed in parent component:', formValue);
-
-    // Check if experience filter has changed
     if (formValue.experience !== this.experience) {
       this.experience = formValue.experience;
       this.searchJobsWithFilters(
@@ -72,7 +70,6 @@ export class SearchPageComponent extends Unsubscribe implements OnInit {
       );
     }
 
-    // Check if jobType filter has changed
     if (formValue.jobType !== this.employment_types) {
       this.employment_types = formValue.jobType;
       this.searchJobsWithFilters(
@@ -83,7 +80,6 @@ export class SearchPageComponent extends Unsubscribe implements OnInit {
       );
     }
 
-    // Check if remote_jobs_only filter has changed
     if (formValue.position.remote_jobs_only !== this.remote_jobs_only) {
       this.remote_jobs_only = formValue.position.remote_jobs_only;
       this.searchJobsWithFilters(
@@ -93,17 +89,30 @@ export class SearchPageComponent extends Unsubscribe implements OnInit {
         this.remote_jobs_only
       );
     }
+
+    if (formValue.sortBy !== this.sortBy) {
+      this.sortBy = formValue.sortBy;
+
+      this.searchJobsWithFilters(
+        this.childValue,
+        this.employment_types,
+        this.experience,
+        this.remote_jobs_only,
+        this.sortBy
+      );
+    }
   }
 
   searchJobsWithFilters(
     searchTerm: string,
     employment_types?: string,
     experience?: string,
-    remote_jobs_only?: boolean
+    remote_jobs_only?: boolean,
+    sortBy?: string
   ) {
     if (searchTerm) {
       const searchResults = this.cacheService.getItem<JobSearchResponseData[]>(
-        `${searchTerm}+${employment_types}+${experience}+${remote_jobs_only}`
+        `${searchTerm}+${employment_types}+${experience}+${remote_jobs_only}+${sortBy}`
       );
 
       if (searchResults) {
@@ -111,13 +120,13 @@ export class SearchPageComponent extends Unsubscribe implements OnInit {
       } else {
         this.showProgressSpinner = true;
         this.searchService
-          .searchJob(searchTerm, employment_types, experience, remote_jobs_only)
+          .searchJob(searchTerm, employment_types, experience, remote_jobs_only, sortBy)
           .pipe(debounceTime(1000), takeUntil(this.unsubscribe$))
           .subscribe({
             next: (res) => {
               if (res.data && res.data.length > 0) {
                 this.cacheService.setItem(
-                  `${searchTerm}+${employment_types}+${experience}+${remote_jobs_only}`,
+                  `${searchTerm}+${employment_types}+${experience}+${remote_jobs_only}+${sortBy}`,
                   res.data
                 );
                 this.searchedJobs = res.data;
