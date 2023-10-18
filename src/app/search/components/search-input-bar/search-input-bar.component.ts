@@ -31,7 +31,7 @@ export class SearchInputBarComponent
       'keyup'
     ).pipe(
       map((event) => event.target.value),
-
+      debounceTime(1000)
     );
 
     jobSearchTerm.pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {

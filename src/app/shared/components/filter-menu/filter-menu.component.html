@@ -3,7 +3,7 @@
         <mat-nav-list [formGroup]="filterForm">
             <div class="fxFlex-row border-b">
                 <h1>Filter</h1>
-                <button mat-raised-button color="primary">Reset</button>
+                <button mat-raised-button color="primary" (click)="resetFilterForm()">Reset</button>
             </div>
             <div class="fxFlex-col">
                 <h1>Sort By</h1>
@@ -15,52 +15,38 @@
                 </mat-radio-group>
             </div>
             <div class="fxFlex-col">
-                <h1>Salary Range</h1>
-                <mat-slider min="0" max="3000" [formControl]="getFormControl('salaryRange')">
-                    <input value="100" matSliderStartThumb>
-                    <input value="400" matSliderEndThumb>
-                </mat-slider>
-            </div>
-            <div class="fxFlex-col">
                 <h1>Job Type</h1>
-                <section formGroupName="jobType">
-                    <mat-checkbox formControlName="fullTime">Full Time</mat-checkbox>
-                    <mat-checkbox formControlName="partTime">Part Time</mat-checkbox>
-                    <mat-checkbox formControlName="internship">Internship</mat-checkbox>
-                    <mat-checkbox formControlName="contractual">Contractual</mat-checkbox>
-                </section>
+                <mat-radio-group formControlName="jobType">
+                    <mat-radio-button value="FULLTIME">Full Time</mat-radio-button>
+                    <mat-radio-button value="PARTTIME">Part Time</mat-radio-button>
+                    <mat-radio-button value="INTERNSHIP">Internship</mat-radio-button>
+                    <mat-radio-button value="CONTRACTOR">Contractual</mat-radio-button>
+                </mat-radio-group>
             </div>
             <div class="fxFlex-col">
                 <h1>Experience</h1>
-                <section formGroupName="experience">
-                    <mat-checkbox formControlName="freshGraduate">Fresh Graduate</mat-checkbox>
-                    <mat-checkbox formControlName="beginner">Beginner</mat-checkbox>
-                    <mat-checkbox formControlName="intermediate">Intermediate</mat-checkbox>
-                    <mat-checkbox formControlName="expert">Expert</mat-checkbox>
-                </section>
+                <mat-radio-group formControlName="experience">
+                    <mat-radio-button value="no_experience">Fresh Graduate</mat-radio-button>
+                    <mat-radio-button value="no_degree">Beginner</mat-radio-button>
+                    <mat-radio-button value="under_3_years_experience">Intermediate</mat-radio-button>
+                    <mat-radio-button value="more_than_3_years_experience">Expert</mat-radio-button>
+                </mat-radio-group>
             </div>
             <div class="fxFlex-col">
                 <h1>Position</h1>
-                <section formGroupName="jobType">
-                    <mat-checkbox formControlName="fullTime">Full Time</mat-checkbox>
-                    <mat-checkbox formControlName="partTime">Part Time</mat-checkbox>
-                    <mat-checkbox formControlName="internship">Internship</mat-checkbox>
-                    <mat-checkbox formControlName="contractual">Contractual</mat-checkbox>
+                <section formGroupName="position">
+                    <mat-checkbox checked [disabled]="true">On-site</mat-checkbox>
+                    <mat-checkbox formControlName="remote_jobs_only">Remote</mat-checkbox>
                 </section>
             </div>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <div class="hide-xs-div">
-            <button mat-icon-button (click)="sidenav.toggle()">
-                <mat-icon>filter_list</mat-icon>
-            </button>
-        </div>
         <div class="content-container">
             <mat-card class="sticky-card card-flex-col fxHide-xs" [formGroup]="filterForm">
                 <div class="fxFlex-row">
                     <h1>Filter</h1>
-                    <button mat-raised-button>Reset</button>
+                    <button mat-raised-button (click)="resetFilterForm()">Reset</button>
                 </div>
                 <div class="fxFlex-col">
                     <h1>Sort By</h1>
@@ -72,35 +58,28 @@
                     </mat-radio-group>
                 </div>
                 <div class="fxFlex-col">
-                    <h1>Salary Range</h1>
-                    <mat-slider min="0" max="3000" [formControl]="getFormControl('salaryRange')">
-                        <input value="100" matSliderStartThumb>
-                        <input value="400" matSliderEndThumb>
-                    </mat-slider>
-                </div>
-                <div class="fxFlex-col">
                     <h1>Job Type</h1>
-                    <section formGroupName="jobType">
-                        <mat-checkbox formControlName="fullTime">Full Time</mat-checkbox>
-                        <mat-checkbox formControlName="partTime">Part Time</mat-checkbox>
-                        <mat-checkbox formControlName="internship">Internship</mat-checkbox>
-                        <mat-checkbox formControlName="contractual">Contractual</mat-checkbox>
-                    </section>
+                    <mat-radio-group formControlName="jobType">
+                        <mat-radio-button value="FULLTIME">Full Time</mat-radio-button>
+                        <mat-radio-button value="PARTTIME">Part Time</mat-radio-button>
+                        <mat-radio-button value="INTERNSHIP">Internship</mat-radio-button>
+                        <mat-radio-button value="CONTRACTOR">Contractual</mat-radio-button>
+                    </mat-radio-group>
                 </div>
                 <div class="fxFlex-col">
                     <h1>Experience</h1>
-                    <section formGroupName="experience">
-                        <mat-checkbox formControlName="freshGraduate">Fresh Graduate</mat-checkbox>
-                        <mat-checkbox formControlName="beginner">Beginner</mat-checkbox>
-                        <mat-checkbox formControlName="intermediate">Intermediate</mat-checkbox>
-                        <mat-checkbox formControlName="expert">Expert</mat-checkbox>
-                    </section>
+                    <mat-radio-group formControlName="experience">
+                        <mat-radio-button value="no_experience">Fresh Graduate</mat-radio-button>
+                        <mat-radio-button value="no_degree">Beginner</mat-radio-button>
+                        <mat-radio-button value="under_3_years_experience">Intermediate</mat-radio-button>
+                        <mat-radio-button value="more_than_3_years_experience">Expert</mat-radio-button>
+                    </mat-radio-group>
                 </div>
                 <div class="fxFlex-col">
                     <h1>Position</h1>
                     <section formGroupName="position">
-                        <mat-checkbox formControlName="onSite">On-site</mat-checkbox>
-                        <mat-checkbox formControlName="remote">Remote</mat-checkbox>
+                        <mat-checkbox checked [disabled]="true">On-site</mat-checkbox>
+                        <mat-checkbox formControlName="remote_jobs_only">Remote</mat-checkbox>
                     </section>
                 </div>
             </mat-card>

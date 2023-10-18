@@ -48,7 +48,7 @@ a:active {
 }
 
 .hide-xs-div {
-  @media (min-width: 640px) {
+  @media (min-width: 768px) {
     display: none;
   }
 }
@@ -185,6 +185,7 @@ a:active {
   justify-content: space-between; /* Space between card and content */
   width: 100%;
   gap: 2rem;
+  min-height: 100vh;
 }
 
 .scrollable-content {

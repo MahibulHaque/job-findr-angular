@@ -1,6 +1,6 @@
 <section class="search-page-wrapper">
   <app-search-input-bar (valueChange)="onChildValueChange($event)"></app-search-input-bar>
-  <app-filter-menu class="w-full">
+  <app-filter-menu class="w-full" (filterFormValueChange)="onFilterFormValueChange($event)">
     <div class="flex-col">
       <h1>Popular Job</h1>
       <div class="jobTypeContainer">
@@ -13,9 +13,13 @@
         <app-job-card [jobType]="'Data Analyst'" [minSalary]="600" [maxSalary]="2000" [peopleApplied]="3000"
           [rating]="5" [iconName]="'database'" [iconContainerBg]="'rgb(255, 103, 103)'"></app-job-card>
       </div>
-      <h1>Search Results</h1>
+      <div class="flex-row">
+        <h1>Search Results</h1>
+        <button mat-icon-button (click)="toggleSidenav()" class="hide-filter-menu-button-lg-screen">
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
       <mat-spinner *ngIf="showProgressSpinner" [diameter]="30"></mat-spinner>
-
       <div class="search-results-wrapper" *ngIf="!showProgressSpinner">
         <ng-container *ngIf="searchedJobs.length === 0">
           <div class="searched-job-wrapper" *ngFor="let job of uiDesignerJobs">

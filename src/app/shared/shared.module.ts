@@ -7,8 +7,8 @@ import { AutocompleteFieldComponent } from './components/autocomplete-field/auto
 import { AngularMaterialUiModule } from '../angular-material-ui/angular-material-ui.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatSliderModule} from '@angular/material/slider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSliderModule } from '@angular/material/slider';
 import { DateFieldComponent } from './components/date-field/date-field.component';
 import { PrimaryButtonComponent } from './components/primary-button/primary-button.component';
 import { TopNavbarComponent } from './components/top-navbar/top-navbar.component';
@@ -19,6 +19,7 @@ import {
 } from './components/job-description-dialog/job-description-dialog.component';
 import { FilterMenuComponent } from './components/filter-menu/filter-menu.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -39,9 +40,10 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     AngularMaterialUiModule,
     MatRadioModule,
+    MatSidenavModule,
     MatSliderModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   exports: [
     InputFieldComponent,

@@ -22,7 +22,6 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   width: 100%;
   gap: 16px;
-
 }
 
 .searched-job-wrapper {
@@ -46,7 +45,24 @@
   width: 100%;
 }
 
-.w-full{
+.w-full {
   width: 100%;
   max-width: 1400px;
+}
+
+.flex-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  &>h1{
+    margin: 0;
+  }
+}
+
+.hide-filter-menu-button-lg-screen {
+  @media (min-width: 768px) {
+    display: none;
+  }
 }
