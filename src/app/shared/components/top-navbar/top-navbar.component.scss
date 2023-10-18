@@ -67,8 +67,8 @@ a:active {
   align-items: center;
   gap: 20px;
 
-  &>li{
-    &>a{
+  & > li {
+    & > a {
       display: flex;
       align-items: center;
       gap: 4px;
@@ -76,8 +76,12 @@ a:active {
   }
 }
 
-.mat-toolbar-gt-xs{
+.mat-toolbar-gt-xs {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+main {
+  padding: 1rem;
 }

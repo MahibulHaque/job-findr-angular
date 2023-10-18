@@ -10,6 +10,7 @@
         [controller]="getFormControl('username')"
         [minLength]="3"
         [maxLength]="30"
+        [appearance]="'outline'"
         class="inputField"
       ></app-input-field>
       <app-input-field
@@ -18,6 +19,7 @@
         [placeholder]="'name@company.com'"
         [required]="true"
         [controller]="getFormControl('email')"
+        [appearance]="'outline'"
         class="inputField"
       ></app-input-field>
       <app-input-field
@@ -26,6 +28,7 @@
         [placeholder]="'••••••••'"
         [required]="true"
         [controller]="getFormControl('password')"
+        [appearance]="'outline'"
         [minLength]="8"
         class="inputField"
       ></app-input-field>
@@ -35,6 +38,7 @@
         [placeholder]="'••••••••'"
         [required]="true"
         [controller]="getFormControl('repassword')"
+        [appearance]="'outline'"
         [minLength]="8"
       ></app-input-field>
       <app-autocomplete-field
@@ -42,12 +46,14 @@
         [required]="true"
         [placeholder]="'Bangladesh'"
         [controller]="getFormControl('country')"
+        [appearance]="'outline'"
         [options]="countryOptions"
       ></app-autocomplete-field>
       <app-date-field
         [title]="'Date of birth'"
         [required]="true"
         [controller]="getFormControl('dob')"
+        [appearance]="'outline'"
         [maximumAge]="80"
         [minimumAge]="16"
       ></app-date-field>

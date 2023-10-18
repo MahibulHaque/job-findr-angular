@@ -23,7 +23,7 @@ export interface JobSearchResponseData {
   job_posted_at_datetime_utc: Date;
   job_city: string;
   job_state: JobState;
-  job_country: JobCountry;
+  job_country: string;
   job_latitude: number;
   job_longitude: number;
   job_benefits: string[] | null;

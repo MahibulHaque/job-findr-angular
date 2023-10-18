@@ -4,16 +4,26 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
-
+import { DataTableComponent } from './components/data-table/data-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    DashboardComponent
-  ],
+  declarations: [DashboardComponent, DataTableComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    SharedModule
-  ]
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    FormsModule,
+    SharedModule,
+  ],
 })
-export class DashboardModule { }
+export class DashboardModule {}
